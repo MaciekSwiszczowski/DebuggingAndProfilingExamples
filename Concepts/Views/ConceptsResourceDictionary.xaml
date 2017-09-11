@@ -1,0 +1,82 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Concepts.Views"
+                    xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+                    xmlns:viewModels="clr-namespace:Concepts.ViewModels"
+                    xmlns:oxy="http://oxyplot.org/wpf">
+
+    <DataTemplate DataType="{x:Type viewModels:PlotViewModel}">
+
+        <oxy:Plot   >
+            <oxy:Plot.Axes>
+                <oxy:LinearAxis Position="Bottom"
+                                Minimum="{Binding Slider.RangeStart}"
+                                Maximum="{Binding Slider.RangeEnd}"/>
+            </oxy:Plot.Axes>
+
+            <oxy:Plot.Series>
+                <oxy:LineSeries 
+                                DataFieldX="Time"
+                                DataFieldY="Value"
+                                ItemsSource="{Binding Measurements}"
+                                StrokeThickness="3"
+                                Color="{Binding Color, Mode=OneTime}" />
+            </oxy:Plot.Series>
+
+        </oxy:Plot>
+
+
+    </DataTemplate>
+    
+    <DataTemplate DataType="{x:Type viewModels:SliderViewModel}">
+        
+        <DockPanel LastChildFill="true"
+                   Margin="30">
+
+            <Button Content="Generate new data"
+                    Command="{Binding GenerateNewDataCommand}"
+                    Margin="5"
+                    />
+            
+            <controls:RangeSlider Minimum="{Binding Start}"
+                                  Maximum="{Binding End}"
+                                  LowerValue="{Binding RangeStart}"
+                                  UpperValue="{Binding RangeEnd}"
+                                  ExtendedMode="True"
+                                   />
+
+
+        </DockPanel>
+        
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewModels:PlotsViewModel}">
+        
+        <TabControl ItemsSource="{Binding Plots}">
+            
+            <TabControl.Resources>
+                <Style TargetType="{x:Type TabItem}"
+                       BasedOn="{StaticResource {x:Type TabItem}}">
+                    <Setter Property="Header" Value="{Binding Header}" />
+                </Style>
+            </TabControl.Resources>
+        </TabControl>
+
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewModels:ConceptsViewModel}">
+
+        <DockPanel LastChildFill="True">
+            
+            <!-- slider -->
+            <ContentPresenter Content="{Binding Slider, Mode=OneTime}" 
+                              DockPanel.Dock="Top"/>
+            
+            <!-- plots -->
+            <ContentPresenter Content="{Binding Plots, Mode=OneTime}"/>
+            
+        </DockPanel>
+    </DataTemplate>
+    
+    
+</ResourceDictionary>

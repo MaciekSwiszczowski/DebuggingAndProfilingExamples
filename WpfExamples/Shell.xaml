@@ -1,0 +1,25 @@
+﻿<Controls:MetroWindow x:Class="WpfExamples.Shell"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:local="clr-namespace:WpfExamples"
+                      xmlns:regions="http://www.codeplex.com/prism"
+                      mc:Ignorable="d"
+                      xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+                      
+                      Height="450"
+                      Width="525"
+                      WindowTransitionsEnabled="True"
+                      BorderThickness="0"
+                      GlowBrush="LightGreen"
+                      WindowStartupLocation="CenterScreen"
+                      Title="Shell"
+                      SaveWindowPosition="True"
+                      >
+
+    <DockPanel LastChildFill="True">
+        <ContentControl regions:RegionManager.RegionName="ConceptsRegion" />
+    </DockPanel>
+
+</Controls:MetroWindow>
