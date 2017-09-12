@@ -43,12 +43,12 @@ namespace Concepts.ViewModels
             Plots = new ObservableCollection<PlotViewModel>();
             for (var i = 0; i < 4; i++)
             {
-                var export = plotViewModelFactory.CreateExport();
+                var viewModel = plotViewModelFactory.CreateExport();
 
-                Plots.Add(export.Value);
+                Plots.Add(viewModel.Value);
 
-                export.Value.Header = _headers[i];
-                export.Value.Color = _colors[i];
+                viewModel.Value.Header = _headers[i];
+                viewModel.Value.Color = _colors[i];
             }
             
 
