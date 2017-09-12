@@ -50,8 +50,6 @@ namespace Concepts.ViewModels
                 viewModel.Value.Header = _headers[i];
                 viewModel.Value.Color = _colors[i];
             }
-            
-
         }
     }
 

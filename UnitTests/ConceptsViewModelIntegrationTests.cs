@@ -8,6 +8,7 @@ using WpfExamples;
 namespace UnitTests
 {
     [TestClass]
+    // Don't 'Run All'! Seems like after Initialization_should_be_successful() memory is not freed
     public class ConceptsViewModelIntegrationTests
     {
         [TestMethod]
@@ -33,12 +34,10 @@ namespace UnitTests
 
             bootstrapper.ConceptsModule.Dispose();
 
-            //dotMemory.Check(memory => memory.GetObjects(where => where.Type.Is<ConceptsView>()).ObjectsCount.ShouldBe(0));
             dotMemory.Check(memory => memory.GetObjects(where => where.Type.Is<PlotViewModel>()).ObjectsCount.ShouldBe(0));
             dotMemory.Check(memory => memory.GetObjects(where => where.Type.Is<ConceptsViewModel>()).ObjectsCount.ShouldBe(0));
             dotMemory.Check(memory => memory.GetObjects(where => where.Type.Is<PlotsViewModel>()).ObjectsCount.ShouldBe(0));
             dotMemory.Check(memory => memory.GetObjects(where => where.Type.Is<SliderViewModel>()).ObjectsCount.ShouldBe(0));
         }
-
     }
 }

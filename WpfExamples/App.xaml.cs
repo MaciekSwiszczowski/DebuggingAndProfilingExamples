@@ -2,7 +2,7 @@
 
 namespace WpfExamples
 {
-    public partial class App : Application
+    public partial class App
     {
         private Bootstrapper _bootstrapper;
 
