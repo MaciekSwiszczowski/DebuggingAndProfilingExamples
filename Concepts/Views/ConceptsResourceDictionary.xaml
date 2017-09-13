@@ -22,10 +22,7 @@
                                 StrokeThickness="3"
                                 Color="{Binding Color, Mode=OneTime}" />
             </oxy:Plot.Series>
-
         </oxy:Plot>
-
-
     </DataTemplate>
     
     <DataTemplate DataType="{x:Type viewModels:SliderViewModel}">
@@ -38,14 +35,13 @@
                     Margin="5"
                     />
             
-            <controls:RangeSlider Minimum="{Binding Start}"
-                                  Maximum="{Binding End}"
+            <controls:RangeSlider Minimum="{Binding Start, Mode=OneTime}"
+                                  Maximum="{Binding End, Mode=OneTime}"
                                   LowerValue="{Binding RangeStart}"
                                   UpperValue="{Binding RangeEnd}"
                                   ExtendedMode="True"
-                                   />
-
-
+                                  Margin="5"
+                                  />
         </DockPanel>
         
     </DataTemplate>

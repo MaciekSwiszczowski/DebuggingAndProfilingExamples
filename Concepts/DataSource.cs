@@ -5,7 +5,7 @@ using System.ComponentModel.Composition;
 namespace Concepts
 {
     [Export(typeof(IDataSource))]
-    //[PartCreationPolicy(CreationPolicy.NonShared)]
+    [PartCreationPolicy(CreationPolicy.NonShared)]
     public class DataSource : IDataSource
     {
         private readonly double SingleTickTimeSpan = 1;

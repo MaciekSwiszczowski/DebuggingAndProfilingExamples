@@ -25,17 +25,6 @@ namespace UnitTests
     [TestClass]
     public class EvilStaticPropertyTests
     {
-
-        [TestMethod]
-        public void NormalizationTest()
-        {
-            var sut = new ExampleClass();
-            const int value = 1000;
-            var normalizedValue = sut.Normalize(value);
-
-            normalizedValue.ShouldBe(10);
-        }
-
         [TestMethod]
         public void InitializationTest()
         {
@@ -47,5 +36,15 @@ namespace UnitTests
             ExampleClass.SecondStaticProperty.ShouldBe(667);
         }
 
+
+        [TestMethod]
+        public void NormalizationTest()
+        {
+            var sut = new ExampleClass();
+            const int value = 1000;
+            var normalizedValue = sut.Normalize(value);
+
+            normalizedValue.ShouldBe(10);
+        }
     }
 }
