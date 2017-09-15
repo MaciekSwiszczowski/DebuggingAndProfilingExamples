@@ -8,25 +8,26 @@ namespace Concepts.ViewModels
     [Export]
     public class PlotsViewModel : BindableBase
     {
-
-        private readonly string[] _headers = {"Red", "Green", "Blue", "Black"};
-        private readonly Color[] _colors = { Colors.Red, Colors.Green, Colors.Blue, Colors.Black };
-
         public ObservableCollection<PlotViewModel> Plots { get; }
 
         [ImportingConstructor]
         public PlotsViewModel(ExportFactory<PlotViewModel> plotViewModelFactory)
         {
-            Plots = new ObservableCollection<PlotViewModel>();
-            for (var i = 0; i < 4; i++)
+            Plots = new ObservableCollection<PlotViewModel>
             {
-                var viewModel = plotViewModelFactory.CreateExport();
+                GetPlotViewModel(plotViewModelFactory, Colors.Red, "Red"),
+                GetPlotViewModel(plotViewModelFactory, Colors.Green, "Green"),
+                GetPlotViewModel(plotViewModelFactory, Colors.Blue, "Blue"),
+                GetPlotViewModel(plotViewModelFactory, Colors.Black, "Black")
+            };
+        }
 
-                Plots.Add(viewModel.Value);
-
-                viewModel.Value.Header = _headers[i];
-                viewModel.Value.Color = _colors[i];
-            }
+        private static PlotViewModel GetPlotViewModel(ExportFactory<PlotViewModel> plotViewModelFactory, Color color, string header)
+        {
+            var plot = plotViewModelFactory.CreateExport().Value;
+            plot.Color = color;
+            plot.Header = header;
+            return plot;
         }
     }
 }

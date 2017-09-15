@@ -35,8 +35,8 @@
                     Margin="5"
                     />
             
-            <controls:RangeSlider Minimum="{Binding Start, Mode=OneTime}"
-                                  Maximum="{Binding End, Mode=OneTime}"
+            <controls:RangeSlider Minimum="{Binding Minimum, Mode=OneTime}"
+                                  Maximum="{Binding Maximum, Mode=OneTime}"
                                   LowerValue="{Binding RangeStart}"
                                   UpperValue="{Binding RangeEnd}"
                                   ExtendedMode="True"

@@ -17,9 +17,9 @@ namespace Concepts.ViewModels
 
         public ICommand GenerateNewDataCommand { get; }
 
-        public double Start { get; set; }
+        public double Minimum { get; set; }
 
-        public double End { get; set; }
+        public double Maximum { get; set; }
 
         public double RangeStart
         {
@@ -44,8 +44,8 @@ namespace Concepts.ViewModels
         [ImportingConstructor]
         public SliderViewModel()
         {
-            Start = 0;
-            End = 100;
+            Minimum = 0;
+            Maximum = 100;
 
             RangeStart = 10;
             RangeEnd = 90;

@@ -42,7 +42,7 @@ namespace Concepts.ViewModels
 
         private void OnGenerateNewData()
         {
-            Measurements = new ObservableCollection<Measurement>(_dataSource.Get(Slider.Start, Slider.End));
+            Measurements = new ObservableCollection<Measurement>(_dataSource.Get(Slider.Minimum, Slider.Maximum));
         }
 
         public void Dispose()

@@ -113,6 +113,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="Structuring and testing viewmodels.pdf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

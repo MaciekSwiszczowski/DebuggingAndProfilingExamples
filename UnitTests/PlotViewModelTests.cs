@@ -52,16 +52,18 @@ namespace UnitTests
         private static PlotViewModel GetPlotViewModel()
         {
             var fixture = new Fixture();
+
             fixture.Register<IDataSource>(() => new DataSource());
+
             fixture.Inject(Colors.Brown);
 
             fixture.Customize<SliderViewModel>(
                 _ => _
+                    .With(x => x.Minimum, 0)
                     .With(x => x.RangeStart, 10)
-                    .With(x => x.Start, 0)
                     .With(x => x.RangeEnd, 90)
-                    .With(x => x.End, 100));
-
+                    .With(x => x.Maximum, 100));
+            
             var sut = fixture.Create<PlotViewModel>();
             return sut;
         }
