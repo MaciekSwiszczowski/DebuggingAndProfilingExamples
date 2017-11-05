@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
+using System.Diagnostics;
+using System.Runtime.CompilerServices;
 
 namespace Concepts
 {
@@ -12,7 +14,7 @@ namespace Concepts
 
         private static readonly Random Randomizer = new Random();
         private Measurement _previousMeasurement = new Measurement();
-
+        private double _factor;
 
         private Measurement CalculateNext()
         {
@@ -20,7 +22,7 @@ namespace Concepts
 
             for (var j = 0; j < 10; j++)
             {
-                nextValue += (Randomizer.NextDouble() - 0.5) * 0.1;
+                nextValue += (Randomizer.NextDouble() - 0.5) * GetFactor();
             }
 
             var newMeasurement = new Measurement
@@ -32,6 +34,11 @@ namespace Concepts
             _previousMeasurement = newMeasurement;
 
             return _previousMeasurement;
+        }
+
+        private double GetFactor()
+        {
+            return _factor;
         }
 
         public IEnumerable<Measurement> Get(double start, double end)
@@ -49,6 +56,16 @@ namespace Concepts
                 currentDate += SingleTickTimeSpan;
             }
 
+            DebugLogs();
+        }
+
+        [Conditional("DEBUG")]
+        private void DebugLogs(
+            [CallerMemberName] string memberName = "",
+            [CallerFilePath] string sourceFilePath = "",
+            [CallerLineNumber] int sourceLineNumber = 0)
+        {
+            Console.WriteLine($"Information: called from: method - {memberName}, file - {sourceFilePath}, line - {sourceLineNumber}");
         }
     }
 }

@@ -10,7 +10,6 @@ namespace Concepts.ViewModels
     public class PlotViewModel : BindableBase, IDisposable
     {
         private readonly IDataSource _dataSource;
-
         private ObservableCollection<Measurement> _measurements;
 
         public string Header { get; set; }
@@ -36,7 +35,7 @@ namespace Concepts.ViewModels
             _dataSource = dataSource;
             Slider = slider;
             Slider.GenerateNewData += OnGenerateNewData;
-
+            
             OnGenerateNewData();
         }
 

@@ -9,5 +9,10 @@ namespace Concepts.Views
         {
             InitializeComponent();
         }
+
+        private void ContentPresenter_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+
+        }
     }
 }

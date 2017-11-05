@@ -1,3 +1,4 @@
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
 using System.Windows.Media;
@@ -8,7 +9,24 @@ namespace Concepts.ViewModels
     [Export]
     public class PlotsViewModel : BindableBase
     {
+        private PlotViewModel _selectedTab;
+
         public ObservableCollection<PlotViewModel> Plots { get; }
+
+        public PlotViewModel SelectedTab
+        {
+            get => _selectedTab;
+            set
+            {
+                _selectedTab = value;
+                RaisePropertyChanged();
+
+                if (_selectedTab.Color == Colors.Black)
+                {
+                    ((PlotViewModel)null).Color = Colors.DarkGray;
+                }
+            }
+        }
 
         [ImportingConstructor]
         public PlotsViewModel(ExportFactory<PlotViewModel> plotViewModelFactory)
