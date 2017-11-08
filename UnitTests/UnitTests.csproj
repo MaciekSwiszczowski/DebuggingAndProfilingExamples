@@ -106,10 +106,6 @@
       <Project>{7f7f157b-dd7f-4cca-967a-6b7ec419be07}</Project>
       <Name>Concepts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WpfExamples\WpfExamples.csproj">
-      <Project>{526CD48B-E7E9-4FB1-83BB-9CE006557EE9}</Project>
-      <Name>WpfExamples</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

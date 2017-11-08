@@ -30,6 +30,8 @@ namespace WpfExamples
                 sum += Math.Sin(i);
             }
 
+            Console.WriteLine(sum);
+
             base.InitializeShell();
 
             ConceptsModule = _container.GetExportedValue<IModule>() as ConceptsModule;

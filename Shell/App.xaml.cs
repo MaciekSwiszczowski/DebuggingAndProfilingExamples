@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System;
+using System.Diagnostics;
+using System.Windows;
 
 namespace WpfExamples
 {
@@ -12,7 +14,16 @@ namespace WpfExamples
             _bootstrapper = new Bootstrapper();
             _bootstrapper.Run();
 
-            Current.Exit += OnExit;
+            Exit += OnExit;
+            AppDomain.CurrentDomain.UnhandledException += OnUnhandledException;
+        }
+
+        private void OnUnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            if (Debugger.IsAttached)
+            {
+                Debugger.Break();
+            }
         }
 
         private void OnExit(object sender, ExitEventArgs e)
