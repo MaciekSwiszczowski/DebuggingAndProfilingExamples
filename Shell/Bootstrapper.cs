@@ -1,21 +1,28 @@
-﻿using Prism.Mef;
-using Prism.Modularity;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
-using System.Windows;
-using System;
-using Concepts;
 using System.Timers;
-using System.Collections.Generic;
+using System.Windows;
+using Concepts;
+using Prism.Mef;
+using Prism.Modularity;
 
-namespace WpfExamples 
+namespace WpfExamples
 {
     public class Bootstrapper : MefBootstrapper, IDisposable
     {
+        private readonly List<int[]> _buffer = new List<int[]>();
         private CompositionContainer _container;
-        private Timer _timer = new Timer();
+        private readonly Timer _timer = new Timer();
 
         public ConceptsModule ConceptsModule { get; private set; }
+
+        public void Dispose()
+        {
+            _container?.Dispose();
+            ConceptsModule?.Dispose();
+        }
 
         protected override DependencyObject CreateShell()
         {
@@ -24,6 +31,7 @@ namespace WpfExamples
 
         protected override void InitializeShell()
         {
+            /*
             double sum = 0;
             for(var i = 0; i < 100_000_000; i++)
             {
@@ -31,21 +39,20 @@ namespace WpfExamples
             }
 
             Console.WriteLine(sum);
+            */
 
             base.InitializeShell();
 
             ConceptsModule = _container.GetExportedValue<IModule>() as ConceptsModule;
 
             if (Application.Current == null)
-            {
                 // We're in tests
                 return;
-            }
 
-            Application.Current.MainWindow = (Shell)Shell;
-            Application.Current.MainWindow.Show();
+            Application.Current.MainWindow = (Shell) Shell;
+            Application.Current.MainWindow?.Show();
 
-            OnInitialized();            
+            OnInitialized();
         }
 
         protected override void ConfigureAggregateCatalog()
@@ -72,13 +79,6 @@ namespace WpfExamples
             return _container;
         }
 
-        public void Dispose()
-        {
-            _container?.Dispose();
-            ConceptsModule?.Dispose();
-        }
-
-        private List<int[]> _buffer = new List<int[]>();
         private void OnInitialized()
         {
             _timer.Interval = TimeSpan.FromSeconds(5).TotalMilliseconds;
